@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package persistance;
+package persistence;
 
 import static java.lang.reflect.Array.set;
 import java.sql.Connection;
