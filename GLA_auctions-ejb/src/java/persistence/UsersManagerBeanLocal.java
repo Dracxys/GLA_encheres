@@ -16,7 +16,15 @@ import model.Users;
  */
 @Local
 public interface UsersManagerBeanLocal {
-        public Boolean addPerson(String last, String first, Date birthday);
-        public List<Integer>  getAllStatus();
-        //public List<Person> allPersons();
+        public Boolean addUser(String last, String first, String login,String password );
+        public Users firstCustomer();
+        public Users getCustommer(int id);
+        public Users getCustommerLogin(String login);
+        public void deleteUser(int id);
+        public void deleteUserLogin(String login);
+        public Users addAddress(int id, String address);
+        public Users addAddressLogin(String login, String address);
+        public Users addCB(int id, int cb);
+        public Users addCBLogin(String login, int cb);
+        
 }
