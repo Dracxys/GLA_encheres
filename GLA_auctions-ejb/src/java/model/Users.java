@@ -33,7 +33,11 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Users.findByFirstname", query = "SELECT u FROM Users u WHERE u.firstname = :firstname")
     , @NamedQuery(name = "Users.findByBuyer", query = "SELECT u FROM Users u WHERE u.buyer = :buyer")
     , @NamedQuery(name = "Users.findByCb", query = "SELECT u FROM Users u WHERE u.cb = :cb")
-    , @NamedQuery(name = "Users.findByAddress", query = "SELECT u FROM Users u WHERE u.address = :address")})
+    , @NamedQuery(name = "Users.findByAddress", query = "SELECT u FROM Users u WHERE u.address = :address")
+    , @NamedQuery(name = "Users.updateAddress", query = "UPDATE Users u SET u.address = :address WHERE u.id = :id")
+    , @NamedQuery(name = "Users.updateAddressLogin", query = "UPDATE Users u SET u.address = :address WHERE u.login = :login")
+    , @NamedQuery(name = "Users.updateCB", query = "UPDATE Users u SET u.cb = :cb WHERE u.id = :id")
+    , @NamedQuery(name = "Users.updateCBLogin", query = "UPDATE Users u SET u.cb = :cb WHERE u.login = :login")})
 public class Users implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -79,8 +83,8 @@ public class Users implements Serializable {
         this.id = id;
     }
 
-    public Users(Integer id, String login, String password, String lastname, String firstname, Boolean buyer) {
-        this.id = id;
+    public Users(String login, String password, String lastname, String firstname, Boolean buyer) {
+        //  this.id = id;
         this.login = login;
         this.password = password;
         this.lastname = lastname;

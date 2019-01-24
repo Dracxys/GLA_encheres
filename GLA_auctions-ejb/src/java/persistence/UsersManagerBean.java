@@ -17,6 +17,7 @@ import javax.annotation.*;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.sql.DataSource;
 import model.Users;
 
@@ -53,60 +54,103 @@ public class UsersManagerBean implements UsersManagerBeanLocal {
         }
     }
     
-    public Boolean addPerson(){
+    public Boolean addUser(){
         Users user = new Users();
         em.persist(user);
         return true;
     }
     
-        public Users firstCustomer() {
+    public Users firstCustomer() {
         Users users = em.find(Users.class, 1L);
         return users;
     }
 
-    
-  /*  public Boolean addPerson(String last, String first, String nick) {
-        Person person = new Person(first, last, nick);
-        try {
-            Statement statement = connection.createStatement();
-            statement.execute("INSERT INTO PERSONS(NICKNAME,FIRSTNAME,LASTNAME) VALUES("
-                    + "\'"
-                   
-                    + person.getFirstname()
-                    + "\',\'"
-                    + person.getLastname()+ "\')");
-        } catch (SQLException sqle) {
-            sqle.printStackTrace();
-        }
-        return true;
-    }*/
-/*
     @Override
-    public List<Person> allPersons() {
-        List<Person> liste = new ArrayList<Person>();
-        try {
-            Statement statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery("SELECT * FROM PERSONS");
-            while(rs.next()){
-                String nickname = rs.getString("NICKNAME");
-                String lastname = rs.getString("LASTNAME");
-                String firstname = rs.getString("FIRSTNAME");
-                liste.add(new Person(firstname, lastname, nickname));
-            }
-        } catch (SQLException sqle) {
-            sqle.printStackTrace();
-        }
-        return liste;
-    }*/
-        
-    public List<Integer> getAllStatus(){
-        ArrayList<Integer> liste = (ArrayList<Integer>)em.createNamedQuery("Integer.findAll").getResultList();
-        return liste;
+    public Boolean addUser(String last, String first, String login, String password) {
+        Users user = new Users(login,password,last,first,false);
+        em.persist(user);
+        return true;
     }
 
     @Override
-    public Boolean addPerson(String last, String first, Date birthday) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Users getCustommer(int id) {
+        Users users = em.find(Users.class, id);
+        return users;
     }
+
+    @Override
+    public Users getCustommerLogin(String login) {
+        Query query = em.createNamedQuery("Users.findByLogin");
+        query.setParameter("login",login);
+        return (Users)query.getSingleResult();
+    }
+
+    @Override
+    public void deleteUser(int id) {
+        Users users = this.getCustommer(id);
+        em.remove(users);
+    }
+
+    @Override
+    public void deleteUserLogin(String login) {
+        Users users = this.getCustommerLogin(login);
+        em.remove(users);
+    }
+
+    @Override
+    public Users addAddress(int id, String address) {
+        Query query = em.createNamedQuery("Users.updateAddress");
+        query.setParameter("id",id);
+        query.setParameter("address", address);
+        return (Users)query.getSingleResult();
+    }
+
+    @Override
+    public Users addAddressLogin(String login, String address) {
+        Query query = em.createNamedQuery("Users.updateAddressLogin");
+        query.setParameter("login",login);
+        query.setParameter("address", address);
+        return (Users)query.getSingleResult();
+    }
+
+    @Override
+    public Users addCB(int id, int cb) {
+        Query query = em.createNamedQuery("Users.updateCB");
+        query.setParameter("id",id);
+        query.setParameter("cb", cb);
+        return (Users)query.getSingleResult();
+    }
+
+    @Override
+    public Users addCBLogin(String login, int cb) {
+        Query query = em.createNamedQuery("Users.updateCBLogin");
+        query.setParameter("login",login);
+        query.setParameter("cb", cb);
+        return (Users)query.getSingleResult();
+    }
+
+    public Users find(String champ, String valeur){
+        Users res = new Users();
+        try{
+            Statement stmt = connection.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT u FROM USERS WHERE "+champ+"="+valeur);
+            while(rs.next()){
+                res.setLogin(rs.getString("login"));
+                res.setPassword(rs.getString("password"));
+                res.setFirstname(rs.getString("firstname"));
+                res.setLastname(rs.getString("lastname"));
+                res.setId(rs.getInt("id"));
+                res.setAddress(rs.getString("address"));
+                res.setCb(rs.getInt("cb"));
+            }
+        }catch(SQLException sqle){
+            sqle.printStackTrace();
+        }
+        return res;
+        
+    }
+    
+  
+        
     
 }
