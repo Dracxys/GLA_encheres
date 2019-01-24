@@ -9,6 +9,7 @@ GLA_auctions-war/dist/
 dist/
 *.class
 build/
+nbproject/
 bin/
 target/
 libs/
