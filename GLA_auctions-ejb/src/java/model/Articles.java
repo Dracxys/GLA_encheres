@@ -98,6 +98,14 @@ public class Articles implements Serializable {
         this.iduser = iduser;
         this.paid = paid;
     }
+    
+        public Articles(String label, double startingprice, String description, Date deadline, int idUser) {
+        this.label = label;
+        this.description = description;
+        this.startingprice = startingprice;
+        this.deadline = deadline;
+        this.iduser = idUser;
+    }
 
     public Integer getId() {
         return id;
