@@ -7,6 +7,7 @@ import javax.ejb.LocalBean;
 import javax.inject.Inject;
 import javax.jms.Destination;
 import javax.jms.JMSContext;
+import model.Commande;
 
 
 
