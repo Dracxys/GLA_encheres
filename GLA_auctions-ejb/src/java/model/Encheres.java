@@ -62,8 +62,8 @@ public class Encheres implements Serializable {
         this.id = id;
     }
 
-    public Encheres(Integer id, int idarticle, int iduser, double proposition, int idlastenchere) {
-        this.id = id;
+    public Encheres(int idarticle, int iduser, double proposition, int idlastenchere) {
+        //this.id = id;
         this.idarticle = idarticle;
         this.iduser = iduser;
         this.proposition = proposition;

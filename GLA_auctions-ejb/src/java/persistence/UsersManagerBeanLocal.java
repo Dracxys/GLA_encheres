@@ -26,5 +26,5 @@ public interface UsersManagerBeanLocal {
         public Users addAddressLogin(String login, String address);
         public Users addCB(int id, int cb);
         public Users addCBLogin(String login, int cb);
-        
+        public Users find(String champs, String valeur);
 }

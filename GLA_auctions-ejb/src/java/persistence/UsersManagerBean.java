@@ -23,9 +23,9 @@ import model.Users;
 
 /**
  *
- * @author lionnet5u
+ * @author schnabel2u
  */
-@Stateless(name = "PersonManager")
+@Stateless(name = "UserManager")
 public class UsersManagerBean implements UsersManagerBeanLocal {
     
     @PersistenceContext(unitName = "GLA")
