@@ -28,7 +28,7 @@ import model.Users;
 @Stateless(name = "UserManager")
 public class UsersManagerBean implements UsersManagerBeanLocal {
     
-    @PersistenceContext(unitName = "GLA")
+    @PersistenceContext(unitName = "GLA_auctions-ejbPU")
     private EntityManager em;
 
     @Resource(lookup = "jdbc/GLA")

@@ -24,7 +24,7 @@ import model.Promotions;
 @Stateless(name = "PromotionManager")
 public class PromotionManagerBean implements PromotionManagerBeanLocal {
     
-    @PersistenceContext(unitName = "GLA")
+    @PersistenceContext(unitName = "GLA_auctions-ejbPU")
     private EntityManager em;
 
     @Resource(lookup = "jdbc/GLA")

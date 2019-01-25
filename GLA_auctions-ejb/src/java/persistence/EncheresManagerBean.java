@@ -28,7 +28,7 @@ import model.Users;
 @Stateless(name = "EncheresManager")
 public class EncheresManagerBean implements EncheresManagerBeanLocal{
 
-    @PersistenceContext(unitName = "GLA")
+    @PersistenceContext(unitName = "GLA_auctions-ejbPU")
     private EntityManager em;
 
     @Resource(lookup = "jdbc/GLA")
