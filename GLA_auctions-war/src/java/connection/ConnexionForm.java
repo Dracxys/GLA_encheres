@@ -14,10 +14,10 @@ import model.Users;
 import persistence.UsersManagerBean;
 
 public final class ConnexionForm {
-    private static final String CHAMP_EMAIL  = "email";
+    private static final String CHAMP_LOGIN  = "login";
     private static final String CHAMP_PASS   = "motdepasse";
 
-    private String              resultat;
+    private String              resultat, login;
     private Map<String, String> erreurs      = new HashMap<String, String>();
     private UsersManagerBean usersManager = new UsersManagerBean();
 
@@ -31,18 +31,18 @@ public final class ConnexionForm {
 
     public Users connecterUtilisateur( HttpServletRequest request ) {
         /* Récupération des champs du formulaire */
-        String email = getValeurChamp( request, CHAMP_EMAIL );
+        this.login = getValeurChamp( request, CHAMP_LOGIN );
         String motDePasse = getValeurChamp( request, CHAMP_PASS );
 
         Users utilisateur = new Users();
 
-        /* Validation du champ email. */
+        /* Validation du champ login. */
         try {
-            validationEmail( email );
+            validationEmail( login );
         } catch ( Exception e ) {
-            setErreur( CHAMP_EMAIL, e.getMessage() );
+            setErreur( CHAMP_LOGIN, e.getMessage() );
         }
-        utilisateur.setLogin( email );
+        utilisateur.setLogin( login );
 
         /* Validation du champ mot de passe. */
         try {
@@ -63,10 +63,10 @@ public final class ConnexionForm {
     }
 
     /**
-     * Valide l'adresse email saisie.
+     * Valide l'adresse login saisie.
      */
-    private void validationEmail( String email ) throws Exception {
-        if ( email != null && !email.matches( "([^.@]+)(\\.[^.@]+)*@([^.@]+\\.)+([^.@]+)" ) ) {
+    private void validationEmail( String login ) throws Exception {
+        if ( login != null && !login.matches( "([^.@]+)(\\.[^.@]+)*@([^.@]+\\.)+([^.@]+)" ) && usersManager.find("login",this.login)!= null) {
             throw new Exception( "Merci de saisir une adresse mail valide." );
         }
     }
@@ -75,13 +75,15 @@ public final class ConnexionForm {
      * Valide le mot de passe saisi.
      */
     private void validationMotDePasse( String motDePasse ) throws Exception {
+        System.out.println("verif");
         if ( motDePasse != null ) {
             if ( motDePasse.length() < 3 ) {
                 throw new Exception( "Le mot de passe doit contenir au moins 3 caractères." );
             } else {
-                if(!motDePasse.equals(usersManager.find("password", motDePasse))){
+                Users tmp = usersManager.getCustommerLogin(this.login);
+                if(!motDePasse.equals(tmp.getPassword())){
                     throw new Exception( "Le mot de passe est incorrect." );
-                }
+                }else System.out.println("connection");
             }
         } else {
             throw new Exception( "Merci de saisir votre mot de passe." );
