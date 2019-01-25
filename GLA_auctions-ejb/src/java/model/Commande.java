@@ -7,6 +7,9 @@ import java.util.List;
 import java.util.ArrayList;
 
 
+import ordering.Article;
+
+
 
 /**
  *
@@ -21,7 +24,7 @@ public class Commande implements Serializable
     
     
     
-    public List<Articles> articles = new ArrayList<>();
+    public List<Article> articles = new ArrayList<>();
     
     public String addressFacturation;
     public String addressLivraison;
@@ -34,7 +37,7 @@ public class Commande implements Serializable
     
     
     
-    public List<Articles> getArticles () {
+    public List<Article> getArticles () {
         return this.articles;
     }
     
