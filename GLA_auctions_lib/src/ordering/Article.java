@@ -1,6 +1,8 @@
 package ordering;
 
 
+import java.io.Serializable;
+
 import java.util.List;
 import java.util.ArrayList;
 
@@ -10,7 +12,7 @@ import java.util.ArrayList;
  *
  * @author user
  */
-public class Article
+public class Article implements Serializable
 {
 
 	
@@ -25,6 +27,11 @@ public class Article
 	
 	public double price;
 	public List<String> codes;
+	
+	public double weight;
+	public double dimX;
+	public double dimY;
+	public double dimZ;
 	
 
 }

@@ -1,13 +1,10 @@
-package model;
+package ordering;
 
 
 import java.io.Serializable;
 
 import java.util.List;
 import java.util.ArrayList;
-
-
-import ordering.Article;
 
 
 
