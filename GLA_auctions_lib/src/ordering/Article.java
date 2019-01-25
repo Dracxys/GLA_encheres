@@ -26,5 +26,10 @@ public class Article
 	public double price;
 	public List<String> codes;
 	
+	public double weight;
+	public double dimX;
+	public double dimY;
+	public double dimZ;
+	
 
 }
