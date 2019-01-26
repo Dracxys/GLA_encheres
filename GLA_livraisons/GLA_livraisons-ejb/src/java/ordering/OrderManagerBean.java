@@ -25,10 +25,10 @@ public class OrderManagerBean
 
 	
 	private static final double maxWeight = 50;
-	private static final double maxVolume = 500;
+	private static final double maxVolume = 5000;
 	
 	
-	@PersistenceContext(unitName = "GLA_livraison-ejbPU")
+	@PersistenceContext(unitName = "GLA_livraisons-ejbPU")
     private EntityManager em;
 	
 	
@@ -52,10 +52,13 @@ public class OrderManagerBean
 				em.persist(livraison);
 				
 				livraison = new Livraison();
-				totalWeight = article.weight;
-				totalVolume = volume;
-				totalPrice = article.price;
+				totalWeight = 0;
+				totalVolume = 0;
+				totalPrice = 0;
 			}
+			totalWeight += article.weight;
+			totalVolume += volume;
+			totalPrice += article.price;
 			
 			livraison.addArticle(article);
 		}

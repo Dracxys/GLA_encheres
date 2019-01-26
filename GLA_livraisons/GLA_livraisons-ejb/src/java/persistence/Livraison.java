@@ -11,8 +11,11 @@ import javax.persistence.Table;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
@@ -27,6 +30,9 @@ import ordering.Article;
  */
 @Entity
 @Table(name="Livraisons")
+@NamedQueries({
+	@NamedQuery(name="Livraisons.findAll", query="SELECT l FROM ODB.LIVRAIISONS l")
+})
 public class Livraison implements Serializable
 {
 
@@ -44,7 +50,7 @@ public class Livraison implements Serializable
 	private Date creationDate;
 	
 	@NotNull
-	@Size(min = 1, max = 2048)
+	@Size(min = 1, max = 8192)
 	@Column(name="articles")
 	private String articles;
 	
