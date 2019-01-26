@@ -1,4 +1,4 @@
-package model;
+package ordering;
 
 
 import java.io.Serializable;
@@ -15,28 +15,28 @@ import java.util.ArrayList;
 public class Commande implements Serializable
 {
 
-
+    
     public Commande ()
     {}
-
-
-
-    public List<Articles> articles = new ArrayList<>();
-
+    
+    
+    
+    public List<Article> articles = new ArrayList<>();
+    
     public String addressFacturation;
     public String addressLivraison;
-
+    
     public int modePaiement;
     public String CB;
-
-
-
-
-
-
-    public List<Articles> getArticles () {
+    
+    
+    
+    
+    
+    
+    public List<Article> getArticles () {
         return this.articles;
     }
-
+    
 
 }
