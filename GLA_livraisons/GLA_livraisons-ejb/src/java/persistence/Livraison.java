@@ -3,7 +3,7 @@ package persistence;
 
 import java.io.Serializable;
 
-import java.sql.Date;
+import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -29,9 +29,9 @@ import ordering.Article;
  * @author user
  */
 @Entity
-@Table(name="Livraisons")
+@Table(name="LIVRAIISONS")
 @NamedQueries({
-	@NamedQuery(name="Livraisons.findAll", query="SELECT l FROM ODB.LIVRAIISONS l")
+	@NamedQuery(name="Livraisons.findAll", query="SELECT l FROM ORDERDB.LIVRAIISONS l")
 })
 public class Livraison implements Serializable
 {
@@ -76,15 +76,55 @@ public class Livraison implements Serializable
 		this.id = id;
 	}
 
-	public void setCreationDate(java.util.Date date) {
-		this.creationDate = (Date) date;
+	public void setCreationDate(Date date) {
+		this.creationDate = date;
 	}
+	
+	public Date getCreationDate () {
+		return this.creationDate;
+	}
+
+	public String getArticles() {
+		return articles;
+	}
+
+	public void setArticles(String articles) {
+		this.articles = articles;
+	}
+
+	public double getPrice() {
+		return price;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
+	}
+
+	public String getAddressFacturation() {
+		return addressFacturation;
+	}
+
+	public void setAddressFacturation(String addressFacturation) {
+		this.addressFacturation = addressFacturation;
+	}
+
+	public String getAddressLivraison() {
+		return addressLivraison;
+	}
+
+	public void setAddressLivraison(String addressLivraison) {
+		this.addressLivraison = addressLivraison;
+	}
+	
+	
+	
 	
 	
 	
 	public void addArticle (Article article)
 	{
 		this.articles += ("" + article.label + "\n" + article.description + "\n" + article.codes + "\n\n");
+		this.price += article.price;
 	}
 	
 	
@@ -114,7 +154,14 @@ public class Livraison implements Serializable
 
 	@Override
 	public String toString() {
-		return "persistence.Livraison[ id=" + id + " ]";
+		String s = "persistence.Livraison[ id=" + id + ", " + this.creationDate.toString() + " ] " + this.addressLivraison;
+		
+		if (!this.addressFacturation.equalsIgnoreCase(this.addressLivraison))
+			s += ("(facturation : " + this.addressFacturation);
+		
+		s += this.articles;
+		
+		return s;
 	}
 	
 }

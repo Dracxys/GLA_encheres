@@ -5,6 +5,10 @@
         <data xmlns="http://www.netbeans.org/ns/j2ee-ejbjarproject/3">
             <name>GLA_auctions-ejb</name>
             <minimum-ant-version>1.6.5</minimum-ant-version>
+            <included-library dirs="200">libs.junit_4.classpath</included-library>
+            <included-library dirs="200">file.reference.mockito-core-2.3.9.jar</included-library>
+            <included-library dirs="200">file.reference.byte-buddy-1.9.8.jar</included-library>
+            <included-library dirs="200">file.reference.objenesis-3.0.1.jar</included-library>
             <source-roots>
                 <root id="src.dir" name="Source Packages"/>
             </source-roots>
