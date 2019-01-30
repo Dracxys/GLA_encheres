@@ -19,7 +19,7 @@ import persistence.Livraison;
  *
  * @author user
  */
-@Stateless
+@Stateless(name="DBManager")
 @LocalBean
 public class DBManagerBean
 {

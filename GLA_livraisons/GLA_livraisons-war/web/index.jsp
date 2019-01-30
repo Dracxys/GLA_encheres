@@ -1,7 +1,7 @@
 <%@page import="java.util.List"%>
 <%@page import="persistence.Livraison"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<jsp:useBean beanName="OrderManagerBean" id="orderManager" scope="request" type="web.DBManagerBean" />
+<jsp:useBean beanName="DBManager" id="orderManager" type="web.DBManagerBean" scope="request" />
 <%
 	List<Livraison> livraisons = orderManager.getLivraisons();
 %>

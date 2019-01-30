@@ -29,9 +29,9 @@ import ordering.Article;
  * @author user
  */
 @Entity
-@Table(name="LIVRAIISONS")
+@Table(name="LIVRAISONS")
 @NamedQueries({
-	@NamedQuery(name="Livraisons.findAll", query="SELECT l FROM ORDERDB.LIVRAIISONS l")
+	@NamedQuery(name="Livraisons.findAll", query="SELECT l FROM Livraison l")
 })
 public class Livraison implements Serializable
 {
@@ -60,11 +60,16 @@ public class Livraison implements Serializable
 	
 	@NotNull
 	@Column(name="addrFacturation")
+	@Size(min = 1, max = 64)
 	String addressFacturation;
 	
 	@NotNull
 	@Column(name="addrLivraison")
+	@Size(min = 1, max = 64)
     public String addressLivraison;
+	
+	
+	
 	
 	
 	
