@@ -30,6 +30,11 @@ public class DBManagerBean
 	
 	
 	
+	public DBManagerBean ()
+	{}
+	
+	
+	
 	public List<Livraison> getLivraisons ()
 	{
 		TypedQuery<Livraison> query = em.createNamedQuery("Livraisons.findAll", Livraison.class);
