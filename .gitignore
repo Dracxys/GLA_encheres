@@ -32,3 +32,5 @@ GLA_auctions-war/nbproject/ant-deploy.xml
 GLA_auctions-war/nbproject/project.properties
 nbproject/ant-deploy.xml
 nbproject/project.properties
+
+*.properties
